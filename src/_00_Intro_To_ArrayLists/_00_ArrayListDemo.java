@@ -35,6 +35,7 @@ public class _00_ArrayListDemo {
         for(String s : names){
             System.out.println(s);
         }
+     
         
         System.out.print("\n");
         
