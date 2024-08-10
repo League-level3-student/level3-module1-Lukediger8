@@ -11,7 +11,11 @@ import processing.core.PApplet;
 public class RetroSun extends PApplet {
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
-
+    int sunTopY = HEIGHT/2 - 200;
+    int sunBottomY = HEIGHT/2 + 200;
+    float step;
+    static final int NUM_SECTIONS = 5;
+    Rectangle[] section;
     // RGB colors
     int[] sunColors = {
             color(212, 202, 11), color(214, 198, 30), color(211, 170, 26),
@@ -24,13 +28,17 @@ public class RetroSun extends PApplet {
     @Override
     public void settings() {
         // 1. Set the size of your sketch to at least 800 width, 600 height
-        
+        size(WIDTH,HEIGHT);
     }
 
     @Override
     public void setup() {
         // 2. Set bgColor as the background color
-        
+    	 background(bgColor);
+    	 section  = new Rectangle[NUM_SECTIONS];
+    	 for(int i = 0; i < NUM_SECTIONS; i++) {
+    		 section[i] = new Rectangle(0,600 - i * 100, 800, 30);
+    	 }
     }
 
     @Override
@@ -42,8 +50,11 @@ public class RetroSun extends PApplet {
         // Draw an ellipse for the sun in the center of the window
         // Use fill(sunColors[0]) to make it yellow
         // Use noStroke() to remove the black outline
-
-        // Do you see a yellow sun like in the 1st image?
+    	noStroke();
+    	stroke(bgColor);
+    	fill(sunColors[0]);
+    	ellipse(WIDTH/2,HEIGHT/2,300,300);
+    	// Do you see a yellow sun like in the 1st image?
         // If not, fix your code before proceeding.
 
         
@@ -56,15 +67,24 @@ public class RetroSun extends PApplet {
         // Call the loadPixels() method to put all the pixel colors into
         // the pixels[] array
         // https://processing.org/reference/loadPixels_.html
-
+    	loadPixels();
         // We want to change the color of our sun so use an if statement
         // to check if the pixel is the color of the yellow circle.
-
         // If pixel[i] is the same color as the color of our circle (sunColors[0]),
         // we need to map the pixel to a color in our sunColors[] array
         // (see 2nd gradient image in RetroSun.html)
-
-        // The top of the sun is yellow (sunColors[0]) and the bottom
+    	int jay;
+    	for(int i = 0; i < pixels.length; i++) {
+    		if(pixels[i] == sunColors[0]) {
+    			int y = i / width;
+    	        step = map(y, sunTopY, sunBottomY, 0, 1);
+    	        jay = interpolateColor(sunColors, step);
+    	        pixels[i] = jay;
+    	        
+    		}
+    	}
+        updatePixels();
+    	// The top of the sun is yellow (sunColors[0]) and the bottom
         // of the sun is red (sunColors[sunColors.length - 1]
 
         // In order to get the right color, the y value from the top of
@@ -91,7 +111,11 @@ public class RetroSun extends PApplet {
          */
 
         // Set the fill color to the background color
-
+        fill(bgColor);
+        for (Rectangle rect : section) {
+            rect(rect.x, rect.y, rect.w, rect.h);
+        }
+  
         // To draw each rectangle we need to find its x, y, width, height
         // *The y position can be any value within the sun:
         //  float y = width / 2;
