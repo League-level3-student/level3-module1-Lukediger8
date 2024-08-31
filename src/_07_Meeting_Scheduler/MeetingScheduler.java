@@ -17,9 +17,9 @@ public class MeetingScheduler {
      * The returned Schedule object represents the times both people are
      * available for a meeting.
      * 
-     * Time availability is always at the top of the hour, so 9:30 is not valid
-     * Time availability always represents 1 hour
-     * Assume both schedules are in the same time zones
+	     * Time availability is always at the top of the hour, so 9:30 is not valid
+	     * Time availability always represents 1 hour
+	     * Assume both schedules are in the same time zones
      */
     public static Schedule getMutualAvailability(Schedule person1, Schedule person2) {
         
