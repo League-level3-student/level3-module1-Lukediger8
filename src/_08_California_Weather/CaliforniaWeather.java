@@ -1,6 +1,13 @@
 package _08_California_Weather;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 /*
  * OBJECTIVE:
@@ -27,10 +34,32 @@ import java.util.HashMap;
  * temperature, you can get a free API key at: https://openweathermap.org/api
  */
 
-public class CaliforniaWeather {
-    
-    void start() {
-        HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
+public class CaliforniaWeather implements ActionListener {
+	JFrame frame = new JFrame();
+	JPanel panel = new JPanel();
+	JButton button1 = new JButton();
+	JButton button2 = new JButton();
+	JButton button3 = new JButton();
+	
+	    void start() {
+	    	frame.setVisible(true);
+			frame.setSize(800, 600);
+			frame.add(panel);
+			panel.add(button1);
+			panel.add(button2);
+			panel.add(button3);
+			button1.setText("City");
+			button2.setText("Weather Condition");
+			button3.setText("Min & Max Temp");
+			button1.addActionListener(this);
+			button2.addActionListener(this);
+			button3.addActionListener(this);
+	
+			
+
+		
+
+	    	HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
         
         // All city keys have the first letter capitalized of each word
         String cityName = Utilities.capitalizeWords( "National City" );
@@ -42,4 +71,21 @@ public class CaliforniaWeather {
             System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
         }
     }
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+		
+			if (button1 == e.getSource()) {
+			  String j  = JOptionPane.showInputDialog(null, "Enter a city in California");
+			  Integer.parseInt(j);
+			}
+
+			if(button2 == e.getSource()) {
+			
+			}
+			if(button3 == e.getSource()) {
+			
+			}
+		}
 }
