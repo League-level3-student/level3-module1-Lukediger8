@@ -101,8 +101,8 @@ public class CaliforniaWeather implements ActionListener {
 						
 						;
 				for(String jett : weatherData.keySet()) {
-					if (weather.equals(weatherData.get(jett).weatherSummary)) {
-						System.out.print(jett);
+					if (weather.equalsIgnoreCase(weatherData.get(jett).weatherSummary)) {
+						System.out.println(jett);
 					}
 				}
 				
