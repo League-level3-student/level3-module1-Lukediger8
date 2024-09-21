@@ -40,6 +40,7 @@ public class CaliforniaWeather implements ActionListener {
 	JButton button1 = new JButton();
 	JButton button2 = new JButton();
 	JButton button3 = new JButton();
+	HashMap<String, WeatherData> weatherData;
 	
 	    void start() {
 	    	frame.setVisible(true);
@@ -59,7 +60,7 @@ public class CaliforniaWeather implements ActionListener {
 
 		
 
-	    	HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
+			weatherData = Utilities.getWeatherData();
         
         // All city keys have the first letter capitalized of each word
         String cityName = Utilities.capitalizeWords( "National City" );
@@ -78,12 +79,34 @@ public class CaliforniaWeather implements ActionListener {
 		
 			if (button1 == e.getSource()) {
 			  String j  = JOptionPane.showInputDialog(null, "Enter a city in California");
-			  Integer.parseInt(j);
+			  JOptionPane.showMessageDialog(null, weatherData.get(j).weatherSummary + " " +weatherData.get(j).temperatureF);
+			  
 			}
 
 			if(button2 == e.getSource()) {
-			
-			}
+				String weather = JOptionPane.showInputDialog("Enter a weather condition")
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						;
+				for(String jett : weatherData.keySet()) {
+					if (weather.equals(weatherData.get(jett).weatherSummary)) {
+						System.out.print(jett);
+					}
+				}
+				
+		}
 			if(button3 == e.getSource()) {
 			
 			}
