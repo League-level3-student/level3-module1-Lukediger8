@@ -95,6 +95,7 @@ public class WorldClocks implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		textArea.setText(city + "\n" + dateStr);
+		a
 	}
 
 	@Override
